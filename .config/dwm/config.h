@@ -2,7 +2,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;
+static const unsigned int borderpx  = 2;
 static const unsigned int gappx     = 5;
 static const unsigned int snap      = 32;       
 static const int showbar            = 1;        
@@ -63,7 +63,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray5, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *gimp[]     = { "gimp", NULL};
 /* static const char *scrot[]    = { "scrot", "-q", "100", NULL}; */
@@ -77,7 +77,6 @@ static Key keys[] = {
 	{ MODKEY,						XK_w,	   spawn,          {.v = browser } },
 	{ MODKEY,						XK_g,	   spawn,		   {.v = gimp } },
 	/* { MODKEY|ShiftMask,				XK_p,      spawn,          {.v = scrot } }, */
-	{ MODKEY|ShiftMask,				XK_d,      spawn,          {.v = discord } },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -118,6 +117,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
 };
 
 /* button definitions */
