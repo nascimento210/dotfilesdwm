@@ -23,8 +23,9 @@ function sucklesthings() {
 }
 
 function patches() {
-    patch < patches/dwm-restartsig-20180523-6.2.diff 
     echo "patching";
+    patch < patches/dwm-restartsig-20180523-6.2.diff 
+    patch < patches/dwm-fullscreen-6.2.diff
     patch < patches/dwm-attachaside-6.1.diff
     patch < patches/dwm-fullgaps-6.4.diff
     patch < patches/dwm-autostart-20161205-bb3bd6f.diff 
