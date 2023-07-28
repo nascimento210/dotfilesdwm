@@ -7,7 +7,7 @@
 
 function requisites() {
   echo "Downloading Pre-requisites";
-  sudo apt install neovim git make gcc libx11-dev libxft-dev libxinerama-dev picom;
+  sudo apt install neovim git make gcc libx11-dev libxft-dev libxinerama-dev picom dunst;
 }
 
 function sucklesthings() {
@@ -54,6 +54,9 @@ function make_install() {
     cd dwm
 }
 
+function notification() {
+    cp .config/dunst .config/
+}
 
 case "$1" in
     "") ;;
@@ -63,6 +66,7 @@ case "$1" in
     patches) "$@"; exit;;
     make_install) "$@"; exit;;
     configs) "$@"; exit;;
+    notification) "$@"; exit;;
     *) "Unkown function: $1()"; exit 2;;
 esac
 
