@@ -67,10 +67,10 @@ static const struct arg args[] = {
 	/* function format          argument */
 	/*{ uptime,        "^c#d9dbda^ up %s ",        NULL           }, */
 	/*{ cpu_freq,		 "^c#bbd5d4^ cpu %s ",       NULL           },*/
-	{ ram_used,		 "^c#d5d5bb^ mem %s ",        NULL           },
-	{ wifi_essid,    "^c#bbd5bd^ %s: ",           "wlp3s0"       },
-	{ wifi_perc,	 "%s%% ",    "wlp3s0"       },
+	{ ram_used,		 "^c#d92121^[mem %s]",        NULL           },
+	{ wifi_essid,    "^c#ffdf00^[%s: ",           "wlp3s0"       },
+	{ wifi_perc,	 "^c#ffdf00^%s%%]",    "wlp3s0"       },
    //{ run_command,    "  Vol:%s ",           "amixer sget Master | awk -F\"[][]\" '/%/ {print $2}' | head -n1"       },
-    { run_command, "Vol: %s", "~/.config/dwm/scripts/Dwmblocks_Wibox/volume-bar" },
-	{ datetime,		 "^c#c8c7dc^ %s ",           "%b %d %Y, %R" },
+    { run_command, "^c#bbd5bd^[Vol: %s]", "~/.config/dwm/scripts/Dwmblocks_Wibox/volume-bar" },
+	{ datetime,		 "^c#c8c7dc^[%s]",           "%b %d %Y, %R" },
 };

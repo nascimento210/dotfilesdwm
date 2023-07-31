@@ -14,8 +14,8 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=9" };
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#0a0a0a";
 static const char col_gray2[]       = "#2e2e2c";
 static const char col_gray3[]       = "#949490";
@@ -31,8 +31,8 @@ static const char *colors[][3]      = {
 static const char *tags[] = { 
 	"www", 
 	"dev", 
+	"files", 
 	"doc", 
-	"chat", 
 	"media",
 };
 
@@ -43,7 +43,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1,       0,                -1 },
+    { "Xed",  NULL,       NULL,       1 << 1,       0,           -1 },
+    { "Nemo",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -121,9 +123,7 @@ static const Key keys[] = {
 	//{ MODKEY,                       XK_r,      spawn,          SHCMD("~/.config/Scripts/dmenu-files") },
 	{ 0,                    XF86XK_AudioRaiseVolume,      spawn,          SHCMD("~/.config/dwm/scripts/Dwmblocks_Wibox/volume+") },
 	{ 0,                    XF86XK_AudioLowerVolume,      spawn,          SHCMD("~/.config/dwm/scripts/Dwmblocks_Wibox/volume-") },
-    //{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-    //{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-    //{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+    { 0,                    XF86XK_AudioMute,             spawn,          SHCMD("~/.config/dwm/scripts/Dwmblocks_Wibox/mute") },
 };
 
 /* button definitions */
