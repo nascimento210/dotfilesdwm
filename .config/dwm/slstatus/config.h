@@ -70,6 +70,7 @@ static const struct arg args[] = {
 	{ ram_used,		 "^c#d5d5bb^ mem %s ",        NULL           },
 	{ wifi_essid,    "^c#bbd5bd^ %s: ",           "wlp3s0"       },
 	{ wifi_perc,	 "%s%% ",    "wlp3s0"       },
-    { run_command,    "  Vol:%s ",           "amixer sget Master | awk -F\"[][]\" '/%/ {print $2}' | head -n1"       },
+   //{ run_command,    "  Vol:%s ",           "amixer sget Master | awk -F\"[][]\" '/%/ {print $2}' | head -n1"       },
+    { run_command, "Vol: %s", "~/.config/dwm/scripts/Dwmblocks_Wibox/volume-bar" },
 	{ datetime,		 "^c#c8c7dc^ %s ",           "%b %d %Y, %R" },
 };

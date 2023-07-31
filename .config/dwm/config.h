@@ -1,5 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
+/* includes */
+#include <X11/XF86keysym.h>
+
+/* Vol and Brightness */
+static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle;", "amixer", "-q", "set", "Speaker", "toggle", NULL };
+static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute;", "amixer", "-q", "set", "Speaker", "unmute", NULL };
+static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute;", "amixer", "-q", "set", "Speaker", "unmute", NULL };
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -106,7 +114,16 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
+    
+    /*music control*/
+    //{ 0,                       XK_x,      spawn,          SHCMD("~/.config/Scripts/dmenu_power") },
+	//{ MODKEY,                       XK_r,      spawn,          SHCMD("~/.config/Scripts/dmenu-files") },
+	{ 0,                    XF86XK_AudioRaiseVolume,      spawn,          SHCMD("~/.config/dwm/scripts/Dwmblocks_Wibox/volume+") },
+	{ 0,                    XF86XK_AudioLowerVolume,      spawn,          SHCMD("~/.config/dwm/scripts/Dwmblocks_Wibox/volume-") },
+    //{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
+    //{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
+    //{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
 };
 
 /* button definitions */

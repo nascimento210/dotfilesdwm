@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# ufetch-void - tiny system info for void
+
+## INFO
+
+# user is already defined
+host="$(hostname)"
+os='Void Linux'
+kernel="$(uname -sr)"
+uptime="$(uptime -p | sed 's/up //')"
+packages="$(xbps-query -l | wc -l)"
+shell="$(basename ${SHELL})"
+memory=$(free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2fGiB/%2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}')
+
+
+if [ -z "${WM}" ]; then
+	if [ "${XDG_CURRENT_DESKTOP}" ]; then
+		envtype='DE'
+		WM="${XDG_CURRENT_DESKTOP}"
+	elif [ "${DESKTOP_SESSION}" ]; then
+		envtype='DE'
+		WM="${DESKTOP_SESSION}"
+	else
+		envtype='WM'
+		WM="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2)"
+	fi
+else
+	envtype='WM'
+fi
+
+## DEFINE COLORS
+
+# probably don't change these
+bold="$(tput bold)"
+black="$(tput setaf 0)"
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+yellow="$(tput setaf 3)"
+blue="$(tput setaf 4)"
+magenta="$(tput setaf 5)"
+cyan="$(tput setaf 6)"
+white="$(tput setaf 7)"
+gray="$(tput setaf 8)"
+reset="$(tput sgr0)"
+
+# you can change these
+lc="${reset}${bold}${green}"	# labels
+nc="${reset}${bold}${gray}"	# user and hostname
+ic="${reset}${bold}${ufetch}"	# info
+c0="${reset}${bold}${blue}"	# first color
+c1="${reset}${cyan}"		# second color
+
+## OUTPUT
+
+cat <<EOF
+${c0}      _______     ${nc}──── ${ic}Information ${nc}────${reset}
+${c0}      ${c0}\_____ \`-    ${nc}  ${ic}${os}${reset}
+${c0}   /\   ${c0}___ \`- \   ${nc}  ${ic}${kernel}${reset}
+${c0}  | |  ${c0}/   \  | |  ${nc}  ${ic}${WM}${reset}
+${c0}  | |  ${c0}\___/  | |  ${nc}  ${ic}${shell}${reset}
+${c0}   \ \`-_____  ${c0}\/   ${nc}  ${ic}${packages}${reset}
+${c0}    \`-______\      ${nc}  ${ic}${memory}${reset}
+		  ${nc}─────────────────────${reset}
+EOF
