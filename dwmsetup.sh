@@ -10,7 +10,7 @@ dirf=$dir_atual$main
 
 function requisites() {
   echo "Downloading Pre-requisites";
-  sudo apt install neovim git make gcc libx11-dev libxft-dev libxinerama-dev picom dunst feh lxappearance;
+  sudo apt install neovim git make gcc libx11-dev libxft-dev libxinerama-dev picom dunst feh lxappearance xarandr;
 }
 
 function sucklesthings() {
@@ -23,6 +23,8 @@ function sucklesthings() {
     git clone https://git.suckless.org/dmenu
     echo "slstatus"
     git clone https://github.com/torrinfail/dwmblocks.git
+    echo "slock"
+    git clone https://git.suckless.org/slock
     echo "tiago"
     #git clone https://github.com/torrinfail/dwmblocks.git
     
@@ -49,9 +51,15 @@ function patches() {
 
 function configs(){
     cd $dirf
-    cp /.config/dwm.config.h ~/.config/dwm/
+    cp /.config/dwm/config.h ~/.config/dwm/
     cp /.config/dwm/slstatus/config.h /.config/dwm/slstatus/config.h
     cp -r /.dwm ~/
+}
+
+function scripts(){
+    cd $dirf
+    cp /.config/dwm/scripts ~/.config/dwm/
+    chmod +x ~/.config/dwm/scripts/Dwmblocks_Wibox/* 
 }
 
 function make_install() {
@@ -77,7 +85,7 @@ function notification() {
 
 function fonts() {
     cd $dirf
-    cp .config/Powerline-font .loca/share/fonts
+    unzip  .config/dwm/fonts/JetBrainsMono.zip ~/.local/share/fonts
     fc-cache -fv
 }
 
@@ -90,7 +98,7 @@ case "$1" in
     make_install) "$@"; exit;;
     configs) "$@"; exit;;
     notification) "$@"; exit;;
-    fonts) "$@"; exit;;
+    scripts) "$@"; exit;;
     *) "Unkown function: $1()"; exit 2;;
 esac
 

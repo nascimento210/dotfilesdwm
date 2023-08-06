@@ -1,4 +1,12 @@
 #!/bin/bash 
 
 VOL="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
-echo "$VOL%"
+MUTE="$(pactl get-sink-mute @DEFAULT_SINK@ | tail -c 5)"
+
+if [ $MUTE == "sim" ]
+then
+   echo "M"
+else
+   echo "$VOL%"
+fi
+

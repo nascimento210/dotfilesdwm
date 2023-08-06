@@ -3,4 +3,4 @@
 pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 VOL=$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')
-notify-send -t 925 "Volume: $VOL"
+dunstify -a "Volume Control" -t 800 "Volume: $VOL" -r "235"
