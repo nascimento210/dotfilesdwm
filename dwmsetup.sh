@@ -85,7 +85,7 @@ function notification() {
 
 function fonts() {
     cd $dirf
-    unzip  .config/dwm/fonts/JetBrainsMono.zip ~/.local/share/fonts
+    cp  .config/dwm/fonts/JetBrainsMono ~/.local/share/fonts/
     fc-cache -fv
 }
 
